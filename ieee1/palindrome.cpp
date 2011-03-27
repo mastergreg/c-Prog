@@ -1,6 +1,4 @@
 #include "palindrome.h"
-#include <iostream>
-using namespace std;
 bool ispalindrome(const char str[])
 {
   int n = strlen(str);
