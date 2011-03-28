@@ -12,34 +12,31 @@ int find_pal(unsigned int lim,string mystr);
 
 int main()
 {
-  unsigned int maxi,limiteven=2,limitodd=3;
+  int maxi,limiteven=2,limitodd=3;
   int i;
   string line,testline;
   ifstream myfile("endo.dna");
   getline (myfile,line);
   maxi=line.size();
   cout << "line size is " << maxi << endl;
-  for(i=2;i<(maxi-limiteven);i++)
+  for(i=0;i<(maxi-limiteven);i++)
   {
     testline=line.substr(i,limiteven);
     if (ispalindrome(testline.c_str()))
     {
       limiteven+=2;
-      i-=2;
-      continue;
+      i=i>2?i-2:i;
     }
   }
-  cout << limiteven << endl;
-  for(i=2;i<maxi-limitodd;i++)
+  for(i=0;i<maxi-limitodd;i++)
   {
     testline=line.substr(i,limitodd);
     if (ispalindrome(testline.c_str()))
     {
       limitodd+=2;
-      i-=2;
+      i=i>2?i-2:i;
     }
   }
-  cout << limitodd << endl;
   cout << "the limit is " << max(limiteven,limitodd)-2 << endl;
   //  testline=line.substr(0,line.size()/8);
   //  limit=locate_pals(testline);

@@ -12,7 +12,7 @@ int find_pal(unsigned int lim,string mystr);
 
 int main()
 {
-  unsigned int limit=7075;
+  int limit=7075;
   int i,maxi;
   string line,testline;
   ifstream myfile("endo.dna");
@@ -20,14 +20,15 @@ int main()
   getline (myfile,line);
   maxi=line.size()-limit;
   cout << maxi<<endl;
-  for(i=0;i<maxi;i++)
+  for(i=0;i<=maxi;i++)
   {
+    testline=line.substr(i,7075);
     if(ispalindrome(testline.c_str()))
     { 
-      cout  << testline.c_str() <<i<<endl;
-      outfile  << testline << endl << endl;
+      outfile  << testline;
       return 0;
     }
   }
+  cout << testline.size() << endl;
   cout << "the limit is " << limit << endl;
 }

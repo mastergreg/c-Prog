@@ -6,7 +6,7 @@ bool ispalindrome(const char str[])
   int i;
   for (i=0;i<middle;i++)
   {
-    if (str[i]!=str[n-i])
+    if (str[i]!=str[n-i-1])
     {
       return false;
     }

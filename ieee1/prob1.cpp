@@ -19,22 +19,22 @@ int main()
   getline (myfile,line);
   maxi=line.size();
   cout << "line size is " << maxi << endl;
-  for(i=0;i<maxi-limiteven;i++)
+  for(i=0;i<(int)(maxi-limiteven);i++)
   {
     testline=line.substr(i,limiteven);
     if (ispalindrome(testline.c_str()))
     {
       limiteven+=2;
-      i-=2;
+      i=i>2?i-2:i;
     }
   }
-  for(i=0;i<maxi-limitodd;i++)
+  for(i=0;i<(int)(maxi-limitodd);i++)
   {
     testline=line.substr(i,limitodd);
     if (ispalindrome(testline.c_str()))
     {
       limitodd+=2;
-      i-=2;
+      i=i>2?i-2:i;
     }
   }
   cout << "the limit is " << max(limiteven,limitodd)-2 << endl;
