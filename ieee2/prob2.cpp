@@ -12,37 +12,35 @@ int find_pal(unsigned int lim,string mystr);
 
 int main()
 {
-  unsigned int limit=6795;
-  int i,maxi;
+  unsigned int maxi,limiteven=2,limitodd=3;
+  int i;
   string line,testline;
   ifstream myfile("endo.dna");
   getline (myfile,line);
-  maxi=line.size()/768;
-  for(i=0;i<768;i++)
-
+  maxi=line.size();
+  cout << "line size is " << maxi << endl;
+  for(i=2;i<(maxi-limiteven);i++)
   {
-    testline=line.substr(i*maxi,maxi);
-    while (testline.size()>limit)
+    testline=line.substr(i,limiteven);
+    if (ispalindrome(testline.c_str()))
     {
-      limit = max((int)limit,find_pal(limit,testline)); 
-      testline.erase(testline.begin());
+      limiteven+=2;
+      i-=2;
+      continue;
     }
-
-    cout << "i= "<<i<<endl;
   }
-  for(i=0;i<768;i++)
-
+  cout << limiteven << endl;
+  for(i=2;i<maxi-limitodd;i++)
   {
-    testline=line.substr(i*maxi+maxi/2,maxi);
-    while (testline.size()>limit)
+    testline=line.substr(i,limitodd);
+    if (ispalindrome(testline.c_str()))
     {
-      limit = max((int)limit,find_pal(limit,testline)); 
-      testline.erase(testline.begin());
+      limitodd+=2;
+      i-=2;
     }
-
-    cout << "i= "<<i<<endl;
   }
-  cout << "the limit is " << limit << endl;
+  cout << limitodd << endl;
+  cout << "the limit is " << max(limiteven,limitodd)-2 << endl;
   //  testline=line.substr(0,line.size()/8);
   //  limit=locate_pals(testline);
 }
