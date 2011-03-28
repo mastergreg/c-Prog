@@ -22,7 +22,6 @@ int main()
 
   {
     testline=line.substr(i*maxi,maxi);
-    cout << testline.size() << endl;
     while (testline.size()>limit)
     {
       limit = max((int)limit,find_pal(limit,testline)); 
