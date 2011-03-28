@@ -12,40 +12,41 @@ int find_pal(unsigned int lim,string mystr);
 
 int main()
 {
-  //  unsigned int limit=500000;
-  string line;
+  unsigned int limit=10;
+  int i,maxi;
+  string line,testline;
   ifstream myfile("softlab.txt");
   getline (myfile,line);
-  //  while (line.size()>limit)
-  //  {
-  //    limit = max((int)limit,find_pal(limit,line)); 
-  //    cout << limit <<endl;
-  //    line.erase(line.begin());
-  //  }
-  locate_pals(line);
+  maxi=line.size()/64;
+  for(i=0;i<64;i++)
+
+  {
+    testline=line.substr(i*maxi,maxi);
+    while (testline.size()>limit)
+    {
+      limit = max((int)limit,find_pal(limit,testline)); 
+      testline.erase(testline.begin());
+    }
+
+    cout << "i= "<<i<<endl;
+  }
+  for(i=0;i<64;i++)
+
+  {
+    testline=line.substr(i*maxi+maxi/2,maxi);
+    while (testline.size()>limit)
+    {
+      limit = max((int)limit,find_pal(limit,testline)); 
+      testline.erase(testline.begin());
+    }
+
+    cout << "i= "<<i<<endl;
+  }
+  cout << "the limit is " << limit << endl;
+  //  testline=line.substr(0,line.size()/8);
+  //  limit=locate_pals(testline);
 }
 
-int locate_pals(string mystr)
-{
-  string buf = mystr;
-  size_t found;
-  while (mystr.size()>1)
-  {
-    cout << buf.size() << endl;
-    while(buf.size()>1)
-    { 
-      found=buf.rfind(buf[0]);
-      buf=buf.substr(0,found);
-      if (ispalindrome(buf.c_str()))
-      {
-        cout << buf << endl;
-      }
-    }
-    mystr.erase(mystr.begin());
-    buf=mystr;
-  }
-  return 0;
-}
 
 int find_pal(unsigned int lim,string mystr)
 {

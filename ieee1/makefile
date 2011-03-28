@@ -1,7 +1,10 @@
-all: prob1
+PROG = prob1
+all: ${PROG}
 palindrome.o: palindrome.cpp
 	g++ -c palindrome.cpp -O3 -Wall -Wextra
-prob1: palindrome.o prob1.cpp
-	g++ palindrome.o prob1.cpp -O3 -Wall -Wextra -o prob1
+${PROG}: palindrome.o ${PROG}.cpp
+	g++ palindrome.o ${PROG}.cpp -O3 -Wall -Wextra -o ${PROG} 
 clean:
-	rm palindrome.o prob1
+	rm palindrome.o ${PROG} ${PROG}.tar 
+tar:
+	tar -czvf ${PROG}.tar *
