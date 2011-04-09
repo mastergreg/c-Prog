@@ -27,7 +27,7 @@ int main()
 
 unsigned int lcs_len_slow(char *xi,char *xj,unsigned int max)
 {
-  unsigned int i,j;
+  unsigned int i,j,ri=0,rj=1,b;
   unsigned int row[2][max+1];
   char *chi=xi,*chj=xj;
   for (i=1;i<max;i++)
@@ -36,13 +36,16 @@ unsigned int lcs_len_slow(char *xi,char *xj,unsigned int max)
     {
       if (chi++==chj)
       {
-        row[(i+1)%2][j]=row[i%2][j]++;
+        row[ri][j]=row[rj][j]++;
       }
       else
       {
-        row[(i+1)%2][j]=( row[(i+1)%2][j-1]<row[i%2][j] ) ? row[i%2][j]:row[(i+1)%2][j-1];
+        row[ri][j]=( row[ri][j-1]<row[rj][j] ) ? row[rj][j]:row[ri][j-1];
       }
     }
+    b=rj;
+    rj=ri;
+    ri=b;
     chi=xi;
     chj--;
   }
