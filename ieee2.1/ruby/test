@@ -1,9 +1,0 @@
-#!/usr/bin/ruby
-require 'diff/lcs'
-require 'diff/lcs/string'
-f = File.new("testfile")
-seq1=f.readline
-seq1.extend(Diff::LCS)
-seq2=seq1.reverse
-lcs = seq1.lcs(seq2)
-$stdout.print lcs.map{|x| x.chr}
