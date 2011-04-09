@@ -26,12 +26,10 @@ int main()
 unsigned int lcs_len(char *xi,char *yi)
 {
   unsigned int counter = 0,a,b;
-  cout << ++recursion_level << endl;
-  while (xi>xinit && yi<ystop)
+  while (xi>=xinit && yi<=ystop)
   {
     if (*xi==*yi)
     {
-      counter++;
       xi--;
       yi++;
     }
