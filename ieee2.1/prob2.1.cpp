@@ -25,31 +25,35 @@ int main()
 
 
 
-unsigned int lcs_len_slow(char *xi,char *xj,unsigned int max)
+unsigned int lcs_len_slow(char *xi,char *xj,unsigned int maxe)
 {
   unsigned int i,j,ri=0,rj=1,b;
-  unsigned int row[2][max+1];
+  unsigned int row[2][maxe+1];
+  unsigned int *rowi,*rowj,prev;
+  memset(row,0,8*maxe+4);
   char *chi=xi,*chj=xj;
-  for (i=0;i<max;i++)
+  
+  for (i=1;i<=maxe;i++)
   {
-    row[0][i]=0;
-  }
-  for (i=0;i<max;i++)
-  {
-    row[1][i]=0;
-  }
-  for (i=1;i<max;i++)
-  {
-    for (j=1;j<max;j++)
+    rowi=row[ri];
+    rowj=row[rj];
+    for (j=1;j<=maxe;j++)
     {
-      if (chi++==chj)
+      if (*chi==*chj)
       {
-        row[ri][j]=row[rj][j-1]++;
+        rowi++;
+        *rowi=*rowj+1;
+        rowj++;
       }
       else
       {
-        row[ri][j]=( row[ri][j-1]<row[rj][j] ) ? row[rj][j]:row[ri][j-1];
+        prev=*rowi;
+        rowi++;
+        rowj++;
+        *rowi=max(*rowj,prev);
+        
       }
+      chi++;
     }
     b=rj;
     rj=ri;
@@ -57,7 +61,7 @@ unsigned int lcs_len_slow(char *xi,char *xj,unsigned int max)
     chi=xi;
     chj--;
   }
-  return (row[0][max]<row[1][max] ) ? row[1][max]:row[0][max];
+  return (row[0][maxe]<row[1][maxe] ) ? row[1][maxe]:row[0][maxe];
 }
 
 
