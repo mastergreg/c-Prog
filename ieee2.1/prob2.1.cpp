@@ -30,13 +30,21 @@ unsigned int lcs_len_slow(char *xi,char *xj,unsigned int max)
   unsigned int i,j,ri=0,rj=1,b;
   unsigned int row[2][max+1];
   char *chi=xi,*chj=xj;
+  for (i=0;i<max;i++)
+  {
+    row[0][i]=0;
+  }
+  for (i=0;i<max;i++)
+  {
+    row[1][i]=0;
+  }
   for (i=1;i<max;i++)
   {
     for (j=1;j<max;j++)
     {
       if (chi++==chj)
       {
-        row[ri][j]=row[rj][j]++;
+        row[ri][j]=row[rj][j-1]++;
       }
       else
       {
