@@ -60,6 +60,7 @@ unsigned int lcs_len_slow(char *xi,char *xj,unsigned int maxe)
       }
       chi++;
     }
+    cout << *rowi << endl; 
     b=rj;
     rj=ri;
     ri=b;
